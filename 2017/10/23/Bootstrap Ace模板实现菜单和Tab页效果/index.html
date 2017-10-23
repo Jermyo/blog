@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Jer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Jer,Jer's Blog" />
+  
+  <meta name="description" content="Bootstrap Ace模板实现菜单和Tab页效果这篇文章主要为大家分享了基于Bootstrap Ace模板实现菜单和Tab页效果，感兴趣的小伙伴们可以参考一下本文分享了项目中使用Ace模板的菜单样式和基于iframe的Tab页效果。  一、效果展示######1、折腾了好久，终于将菜单样式和Tab页的效果从项目中抽出来了。 ######2、展开菜单（支持多级展开，后面代码介绍） ######3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jer">
+<meta property="og:url" content="https://github.com/Jermyo/blog.git/2017/10/23/Bootstrap Ace模板实现菜单和Tab页效果/index.html">
+<meta property="og:site_name" content="Jer">
+<meta property="og:description" content="Bootstrap Ace模板实现菜单和Tab页效果这篇文章主要为大家分享了基于Bootstrap Ace模板实现菜单和Tab页效果，感兴趣的小伙伴们可以参考一下本文分享了项目中使用Ace模板的菜单样式和基于iframe的Tab页效果。  一、效果展示######1、折腾了好久，终于将菜单样式和Tab页的效果从项目中抽出来了。 ######2、展开菜单（支持多级展开，后面代码介绍） ######3">
+<meta property="og:image" content="http://img.blog.csdn.net/20171023113850535?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmVybXlv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20171023113952421?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmVybXlv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20171023114248713?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmVybXlv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20171023114400031?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmVybXlv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20171023114510871?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmVybXlv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20171023114552922?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmVybXlv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20171023114623868?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmVybXlv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20171023115338374?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmVybXlv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2017-10-23T03:58:47.729Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Jer">
+<meta name="twitter:description" content="Bootstrap Ace模板实现菜单和Tab页效果这篇文章主要为大家分享了基于Bootstrap Ace模板实现菜单和Tab页效果，感兴趣的小伙伴们可以参考一下本文分享了项目中使用Ace模板的菜单样式和基于iframe的Tab页效果。  一、效果展示######1、折腾了好久，终于将菜单样式和Tab页的效果从项目中抽出来了。 ######2、展开菜单（支持多级展开，后面代码介绍） ######3">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20171023113850535?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmVybXlv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+  
+  
+    <link rel="icon" href="favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/blog/css/style.css">
+  <script src="/blog/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/blog/" class="left">
+                    <span class="site-title">Jer&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="https://jermyo.github.io/blog">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/blog/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/blog/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/blog/">
+                    <img src="/blog/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        Jer&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        一个专注 WEB 开发的技术博客
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Jermyo" target="_blank" href="//jermyo.github.io/blog">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/Jermyo">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/jimmygjm">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Twitter" target="_blank" href="//twitter.com">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-Bootstrap Ace模板实现菜单和Tab页效果" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h1 id="Bootstrap-Ace模板实现菜单和Tab页效果"><a href="#Bootstrap-Ace模板实现菜单和Tab页效果" class="headerlink" title="Bootstrap Ace模板实现菜单和Tab页效果"></a>Bootstrap Ace模板实现菜单和Tab页效果</h1><p>这篇文章主要为大家分享了基于Bootstrap Ace模板实现菜单和Tab页效果，感兴趣的小伙伴们可以参考一下<br>本文分享了项目中使用Ace模板的菜单样式和基于iframe的Tab页效果。</p>
+<hr>
+<h2 id="一、效果展示"><a href="#一、效果展示" class="headerlink" title="一、效果展示"></a>一、效果展示</h2><p>######1、折腾了好久，终于将菜单样式和Tab页的效果从项目中抽出来了。<br><img src="http://img.blog.csdn.net/20171023113850535?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmVybXlv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="首页"></p>
+<p>######2、展开菜单（支持多级展开，后面代码介绍）<br><img src="http://img.blog.csdn.net/20171023113952421?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmVybXlv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="菜单展开"></p>
+<p>######3、点击子菜单，以Tab页的形式打开对应的页面<br><img src="http://img.blog.csdn.net/20171023114248713?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmVybXlv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="tab展开"><br><img src="http://img.blog.csdn.net/20171023114400031?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmVybXlv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="tab展开"></p>
+<p>######4、支持菜单折叠<br><img src="http://img.blog.csdn.net/20171023114510871?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmVybXlv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>######5、打开的菜单过多时自动换行显示，折叠后自适应<br><img src="http://img.blog.csdn.net/20171023114552922?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmVybXlv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br><img src="http://img.blog.csdn.net/20171023114623868?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmVybXlv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>##二、代码示例<br>有现成的东西用很方便的，总的来说Bootstrap Ace模板的功能还是比较强大的，并且支持各种终端设备。本文主要使用的它的菜单的效果，下面就来看看Ace模板菜单效果的实现代码。</p>
+<p>######1、菜单效果<br>由于Ace是基于Bootstrap的，所以首先需要引用jquery和bootstrap组件，先来总的看看它需要引用哪些文件吧</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;script src=&quot;/Scripts/jquery-1.9.1.min.js&quot;&gt;&lt;/script&gt;</div><div class="line"> </div><div class="line"> &lt;script src=&quot;/Content/bootstrap/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;</div><div class="line"> &lt;link href=&quot;/Content/bootstrap/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot; /&gt;</div><div class="line"> </div><div class="line"> &lt;link href=&quot;/Content/font-awesome/css/font-awesome.min.css&quot; rel=&quot;stylesheet&quot; /&gt;</div><div class="line"> &lt;link href=&quot;/Content/ace/css/ace-rtl.min.css&quot; rel=&quot;stylesheet&quot; /&gt;</div><div class="line"> &lt;link href=&quot;/Content/ace/css/ace-skins.min.css&quot; rel=&quot;stylesheet&quot; /&gt;</div><div class="line"> &lt;link href=&quot;/Content/sidebar-menu/sidebar-menu.css&quot; rel=&quot;stylesheet&quot;/&gt;</div><div class="line"> </div><div class="line"> &lt;script src=&quot;/Content/ace/js/ace-extra.min.js&quot;&gt;&lt;/script&gt;</div><div class="line"> &lt;script src=&quot;/Content/ace/js/ace.min.js&quot;&gt;&lt;/script&gt;</div><div class="line"> </div><div class="line">　&lt;script src=&quot;/Content/sidebar-menu/sidebar-menu.js&quot;&gt;&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>呵呵，看着还是挺多的吧。除了最后一个js文件（<script src="/Content/sidebar-menu/sidebar-menu.js"></script>）是博主自己封装的，其他基本都是些组件需要的特性组件。看看页面上面要放哪些html标签：　</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;sidebar&quot; id=&quot;sidebar&quot;&gt;</div><div class="line">   &lt;ul class=&quot;nav nav-list&quot; id=&quot;menu&quot;&gt;&lt;/ul&gt;</div><div class="line">   &lt;div class=&quot;sidebar-collapse&quot; id=&quot;sidebar-collapse&quot;&gt;</div><div class="line">    &lt;i class=&quot;icon-double-angle-left&quot; data-icon1=&quot;icon-double-angle-left&quot; data-icon2=&quot;icon-double-angle-right&quot;&gt;&lt;/i&gt;</div><div class="line">   &lt;/div&gt;</div><div class="line">  &lt;/div&gt;</div></pre></td></tr></table></figure>
+<p>再来看看sidebar-menu.js这个文件里面封装的方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div></pre></td><td class="code"><pre><div class="line">(function ($) &#123;</div><div class="line"> $.fn.sidebarMenu = function (options) &#123;</div><div class="line">  options = $.extend(&#123;&#125;, $.fn.sidebarMenu.defaults, options || &#123;&#125;);</div><div class="line">  var target = $(this);</div><div class="line">  target.addClass(&apos;nav&apos;);</div><div class="line">  target.addClass(&apos;nav-list&apos;);</div><div class="line">  if (options.data) &#123;</div><div class="line">   init(target, options.data);</div><div class="line">  &#125;</div><div class="line">  else &#123;</div><div class="line">   if (!options.url) return;</div><div class="line">   $.getJSON(options.url, options.param, function (data) &#123;</div><div class="line">    init(target, data);</div><div class="line">   &#125;);</div><div class="line">  &#125;</div><div class="line">  var url = window.location.pathname;</div><div class="line">  //menu = target.find(&quot;[href=&apos;&quot; + url + &quot;&apos;]&quot;);</div><div class="line">  //menu.parent().addClass(&apos;active&apos;);</div><div class="line">  //menu.parent().parentsUntil(&apos;.nav-list&apos;, &apos;li&apos;).addClass(&apos;active&apos;).addClass(&apos;open&apos;);</div><div class="line">  function init(target, data) &#123;</div><div class="line">   $.each(data, function (i, item) &#123;</div><div class="line">    var li = $(&apos;&lt;li&gt;&lt;/li&gt;&apos;);</div><div class="line">    var a = $(&apos;&lt;a&gt;&lt;/a&gt;&apos;);</div><div class="line">    var icon = $(&apos;&lt;i&gt;&lt;/i&gt;&apos;);</div><div class="line">    //icon.addClass(&apos;glyphicon&apos;);</div><div class="line">    icon.addClass(item.icon);</div><div class="line">    var text = $(&apos;&lt;span&gt;&lt;/span&gt;&apos;);</div><div class="line">    text.addClass(&apos;menu-text&apos;).text(item.text);</div><div class="line">    a.append(icon);</div><div class="line">    a.append(text);</div><div class="line">    if (item.menus&amp;&amp;item.menus.length&gt;0) &#123;</div><div class="line">     a.attr(&apos;href&apos;, &apos;#&apos;);</div><div class="line">     a.addClass(&apos;dropdown-toggle&apos;);</div><div class="line">     var arrow = $(&apos;&lt;b&gt;&lt;/b&gt;&apos;);</div><div class="line">     arrow.addClass(&apos;arrow&apos;).addClass(&apos;icon-angle-down&apos;);</div><div class="line">     a.append(arrow);</div><div class="line">     li.append(a);</div><div class="line">     var menus = $(&apos;&lt;ul&gt;&lt;/ul&gt;&apos;);</div><div class="line">     menus.addClass(&apos;submenu&apos;);</div><div class="line">     init(menus, item.menus);</div><div class="line">     li.append(menus);</div><div class="line">    &#125;</div><div class="line">    else &#123;</div><div class="line">     var href = &apos;javascript:addTabs(&#123;id:\&apos;&apos; + item.id + &apos;\&apos;,title: \&apos;&apos; + item.text + &apos;\&apos;,close: true,url: \&apos;&apos; + item.url + &apos;\&apos;&#125;);&apos;;</div><div class="line">     a.attr(&apos;href&apos;, href);</div><div class="line">     //if (item.istab)</div><div class="line">     // a.attr(&apos;href&apos;, href);</div><div class="line">     //else &#123;</div><div class="line">     // a.attr(&apos;href&apos;, item.url);</div><div class="line">     // a.attr(&apos;title&apos;, item.text);</div><div class="line">     // a.attr(&apos;target&apos;, &apos;_blank&apos;)</div><div class="line">     //&#125;</div><div class="line">     li.append(a);</div><div class="line">    &#125;</div><div class="line">    target.append(li);</div><div class="line">   &#125;);</div><div class="line">  &#125;</div><div class="line"> &#125;</div><div class="line"> </div><div class="line"> $.fn.sidebarMenu.defaults = &#123;</div><div class="line">  url: null,</div><div class="line">  param: null,</div><div class="line">  data: null</div><div class="line"> &#125;;</div><div class="line">&#125;)(jQuery);</div></pre></td></tr></table></figure>
+<p>在页面上面直接调用sidebar-menu的方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div></pre></td><td class="code"><pre><div class="line">$(function () &#123;</div><div class="line">   $(&apos;#menu&apos;).sidebarMenu(&#123;</div><div class="line">    data: [&#123;</div><div class="line">     id: &apos;1&apos;,</div><div class="line">     text: &apos;系统设置&apos;,</div><div class="line">     icon: &apos;icon-cog&apos;,</div><div class="line">     url: &apos;&apos;,</div><div class="line">     menus: [&#123;</div><div class="line">      id: &apos;11&apos;,</div><div class="line">      text: &apos;编码管理&apos;,</div><div class="line">      icon: &apos;icon-glass&apos;,</div><div class="line">      url: &apos;/CodeType/Index&apos;</div><div class="line">     &#125;]</div><div class="line">    &#125;, &#123;</div><div class="line">     id: &apos;2&apos;,</div><div class="line">     text: &apos;基础数据&apos;,</div><div class="line">     icon: &apos;icon-leaf&apos;,</div><div class="line">     url: &apos;&apos;,</div><div class="line">     menus: [&#123;</div><div class="line">      id: &apos;21&apos;,</div><div class="line">      text: &apos;基础特征&apos;,</div><div class="line">      icon: &apos;icon-glass&apos;,</div><div class="line">      url: &apos;/BasicData/BasicFeature/Index&apos;</div><div class="line">     &#125;, &#123;</div><div class="line">      id: &apos;22&apos;,</div><div class="line">      text: &apos;特征管理&apos;,</div><div class="line">      icon: &apos;icon-glass&apos;,</div><div class="line">      url: &apos;/BasicData/Features/Index&apos;</div><div class="line">     &#125;, &#123;</div><div class="line">      id: &apos;23&apos;,</div><div class="line">      text: &apos;物料维护&apos;,</div><div class="line">      icon: &apos;icon-glass&apos;,</div><div class="line">      url: &apos;/Model/Index&apos;</div><div class="line">     &#125;, &#123;</div><div class="line">      id: &apos;24&apos;,</div><div class="line">      text: &apos;站点管理&apos;,</div><div class="line">      icon: &apos;icon-glass&apos;,</div><div class="line">      url: &apos;/Station/Index&apos;</div><div class="line">     &#125;]</div><div class="line">    &#125;, &#123;</div><div class="line">     id: &apos;3&apos;,</div><div class="line">     text: &apos;权限管理&apos;,</div><div class="line">     icon: &apos;icon-user&apos;,</div><div class="line">     url: &apos;&apos;,</div><div class="line">     menus: [&#123;</div><div class="line">      id: &apos;31&apos;,</div><div class="line">      text: &apos;用户管理&apos;,</div><div class="line">      icon: &apos;icon-user&apos;,</div><div class="line">      url: &apos;/SystemSetting/User&apos;</div><div class="line">     &#125;, &#123;</div><div class="line">      id: &apos;32&apos;,</div><div class="line">      text: &apos;角色管理&apos;,</div><div class="line">      icon: &apos;icon-apple&apos;,</div><div class="line">      url: &apos;/SystemSetting/Role&apos;</div><div class="line">     &#125;, &#123;</div><div class="line">      id: &apos;33&apos;,</div><div class="line">      text: &apos;菜单管理&apos;,</div><div class="line">      icon: &apos;icon-list&apos;,</div><div class="line">      url: &apos;/SystemSetting/Menu&apos;</div><div class="line">     &#125;, &#123;</div><div class="line">      id: &apos;34&apos;,</div><div class="line">      text: &apos;部门管理&apos;,</div><div class="line">      icon: &apos;icon-glass&apos;,</div><div class="line">      url: &apos;/SystemSetting/Department&apos;</div><div class="line">     &#125;]</div><div class="line">    &#125;, &#123;</div><div class="line">     id: &apos;4&apos;,</div><div class="line">     text: &apos;订单管理&apos;,</div><div class="line">     icon: &apos;icon-envelope&apos;,</div><div class="line">     url: &apos;&apos;,</div><div class="line">     menus: [&#123;</div><div class="line">      id: &apos;41&apos;,</div><div class="line">      text: &apos;订单查询&apos;,</div><div class="line">      icon: &apos;icon-glass&apos;,</div><div class="line">      url: &apos;/Order/Query&apos;</div><div class="line">     &#125;, &#123;</div><div class="line">      id: &apos;42&apos;,</div><div class="line">      text: &apos;订单排产&apos;,</div><div class="line">      icon: &apos;icon-glass&apos;,</div><div class="line">      url: &apos;/Order/PLANTPRODUCT&apos;</div><div class="line">     &#125;, &#123;</div><div class="line">      id: &apos;43&apos;,</div><div class="line">      text: &apos;订单撤排&apos;,</div><div class="line">      icon: &apos;icon-glass&apos;,</div><div class="line">      url: &apos;/Order/cancelPRODUCT&apos;</div><div class="line">     &#125;, &#123;</div><div class="line">      id: &apos;44&apos;,</div><div class="line">      text: &apos;订单HOLD&apos;,</div><div class="line">      icon: &apos;icon-glass&apos;,</div><div class="line">      url: &apos;/Order/hold&apos;</div><div class="line">     &#125;, &#123;</div><div class="line">      id: &apos;45&apos;,</div><div class="line">      text: &apos;订单删除&apos;,</div><div class="line">      icon: &apos;icon-glass&apos;,</div><div class="line">      url: &apos;/Order/delete&apos;</div><div class="line">     &#125;, &#123;</div><div class="line">      id: &apos;47&apos;,</div><div class="line">      text: &apos;订单插单&apos;,</div><div class="line">      icon: &apos;icon-glass&apos;,</div><div class="line">      url: &apos;/Order/insertorder&apos;</div><div class="line">     &#125;, &#123;</div><div class="line">      id: &apos;48&apos;,</div><div class="line">      text: &apos;订单导入&apos;,</div><div class="line">      icon: &apos;icon-glass&apos;,</div><div class="line">      url: &apos;/Order/Import&apos;</div><div class="line">     &#125;]</div><div class="line">    &#125;]</div><div class="line">   &#125;);</div><div class="line">  &#125;);</div></pre></td></tr></table></figure>
+<p>这里需要说明的很重要的一点就是关于菜单前面的小图标：<br><img src="http://img.blog.csdn.net/20171023115338374?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmVybXlv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>con的值为icon-user的时候，菜单上面就会显示一个如图的小图标。当然一般情况下，菜单肯定是动态加载的的，如果需要从后台取数据，可以直接调用此方法：</p>
+<p>$(‘#menu’).sidebarMenu({ url: “/api/UserApi/GetMenuByUser/“, param: { strUser: ‘admin’ } });<br>即可，呵呵，很简单吧。</p>
+<p>######2、Tab页效果<br>Tab页的效果其实是和左边菜单息息相关的，首先还是看看Tab页效果的js引用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;script src=&quot;/Scripts/bootstrap-tab.js&quot;&gt;&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>页面的html标签：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;main-content&quot;&gt;&lt;div class=&quot;page-content&quot;&gt;</div><div class="line">    &lt;div class=&quot;row&quot;&gt;</div><div class="line">     &lt;div class=&quot;col-xs-12&quot; style=&quot;padding-left:5px;&quot;&gt;</div><div class="line">      &lt;ul class=&quot;nav nav-tabs&quot; role=&quot;tablist&quot;&gt;</div><div class="line">       &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;#Index&quot; role=&quot;tab&quot; data-toggle=&quot;tab&quot;&gt;首页&lt;/a&gt;&lt;/li&gt;</div><div class="line">      &lt;/ul&gt;</div><div class="line">      &lt;div class=&quot;tab-content&quot;&gt;</div><div class="line">       &lt;div role=&quot;tabpanel&quot; class=&quot;tab-pane active&quot; id=&quot;Index&quot;&gt;</div><div class="line">       &lt;/div&gt;</div><div class="line">      &lt;/div&gt;</div><div class="line">     &lt;/div&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">   &lt;/div&gt;</div><div class="line">  &lt;/div&gt;</div></pre></td></tr></table></figure>
+<p>bootstrap-tab.js这个文件里面封装了addTabs方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line">var addTabs = function (options) &#123;</div><div class="line"> //var rand = Math.random().toString();</div><div class="line"> //var id = rand.substring(rand.indexOf(&apos;.&apos;) + 1);</div><div class="line"> var url = window.location.protocol + &apos;//&apos; + window.location.host;</div><div class="line"> options.url = url + options.url;</div><div class="line"> id = &quot;tab_&quot; + options.id;</div><div class="line"> $(&quot;.active&quot;).removeClass(&quot;active&quot;);</div><div class="line"> //如果TAB不存在，创建一个新的TAB</div><div class="line"> if (!$(&quot;#&quot; + id)[0]) &#123;</div><div class="line">  //固定TAB中IFRAME高度</div><div class="line">  mainHeight = $(document.body).height() - 90;</div><div class="line">  //创建新TAB的title</div><div class="line">  title = &apos;&lt;li role=&quot;presentation&quot; id=&quot;tab_&apos; + id + &apos;&quot;&gt;&lt;a href=&quot;#&apos; + id + &apos;&quot; aria-controls=&quot;&apos; + id + &apos;&quot; role=&quot;tab&quot; data-toggle=&quot;tab&quot;&gt;&apos; + options.title;</div><div class="line">  //是否允许关闭</div><div class="line">  if (options.close) &#123;</div><div class="line">   title += &apos; &lt;i class=&quot;glyphicon glyphicon-remove&quot; tabclose=&quot;&apos; + id + &apos;&quot;&gt;&lt;/i&gt;&apos;;</div><div class="line">  &#125;</div><div class="line">  title += &apos;&lt;/a&gt;&lt;/li&gt;&apos;;</div><div class="line">  //是否指定TAB内容</div><div class="line">  if (options.content) &#123;</div><div class="line">   content = &apos;&lt;div role=&quot;tabpanel&quot; class=&quot;tab-pane&quot; id=&quot;&apos; + id + &apos;&quot;&gt;&apos; + options.content + &apos;&lt;/div&gt;&apos;;</div><div class="line">  &#125; else &#123;//没有内容，使用IFRAME打开链接</div><div class="line">   content = &apos;&lt;div role=&quot;tabpanel&quot; class=&quot;tab-pane&quot; id=&quot;&apos; + id + &apos;&quot;&gt;&lt;iframe src=&quot;&apos; + options.url + &apos;&quot; width=&quot;100%&quot; height=&quot;&apos; + mainHeight +</div><div class="line">     &apos;&quot; frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;yes&quot; allowtransparency=&quot;yes&quot;&gt;&lt;/iframe&gt;&lt;/div&gt;&apos;;</div><div class="line">  &#125;</div><div class="line">  //加入TABS</div><div class="line">  $(&quot;.nav-tabs&quot;).append(title);</div><div class="line">  $(&quot;.tab-content&quot;).append(content);</div><div class="line"> &#125;</div><div class="line"> //激活TAB</div><div class="line"> $(&quot;#tab_&quot; + id).addClass(&apos;active&apos;);</div><div class="line"> $(&quot;#&quot; + id).addClass(&quot;active&quot;);</div><div class="line">&#125;;</div><div class="line">var closeTab = function (id) &#123;</div><div class="line"> //如果关闭的是当前激活的TAB，激活他的前一个TAB</div><div class="line"> if ($(&quot;li.active&quot;).attr(&apos;id&apos;) == &quot;tab_&quot; + id) &#123;</div><div class="line">  $(&quot;#tab_&quot; + id).prev().addClass(&apos;active&apos;);</div><div class="line">  $(&quot;#&quot; + id).prev().addClass(&apos;active&apos;);</div><div class="line"> &#125;</div><div class="line"> //关闭TAB</div><div class="line"> $(&quot;#tab_&quot; + id).remove();</div><div class="line"> $(&quot;#&quot; + id).remove();</div><div class="line">&#125;;</div><div class="line">$(function () &#123;</div><div class="line"> mainHeight = $(document.body).height() - 45;</div><div class="line"> $(&apos;.main-left,.main-right&apos;).height(mainHeight);</div><div class="line"> $(&quot;[addtabs]&quot;).click(function () &#123;</div><div class="line">  addTabs(&#123; id: $(this).attr(&quot;id&quot;), title: $(this).attr(&apos;title&apos;), close: true &#125;);</div><div class="line"> &#125;);</div><div class="line"> </div><div class="line"> $(&quot;.nav-tabs&quot;).on(&quot;click&quot;, &quot;[tabclose]&quot;, function (e) &#123;</div><div class="line">  id = $(this).attr(&quot;tabclose&quot;);</div><div class="line">  closeTab(id);</div><div class="line"> &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>那么，在什么时候调用Addtabs方法呢？答案是注册菜单click事件的时候，这部分代码在前面sidebar-menu组件封装的时候就有，可以看看上面。</p>
+<p>如果大家还想深入学习，可以点击这里进行学习，再为大家附两个精彩的专题：Bootstrap学习教程 Bootstrap实战教程</p>
+<p>以上就是bootstrap ace模板的菜单和Tab页效果的展示，总的来说，基本的功能具备了，但菜单的样式还有待调整，比如点击某个菜单之后，点击的菜单需要给一个选中的状态。如果你的项目也是用的bootstrap风格，研究下ace模板，可以使用起来试试。</p>
+<hr>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2017年10月23日 11:58</p>
+        <p>原始链接： <a class="post-url" href="/blog/2017/10/23/Bootstrap Ace模板实现菜单和Tab页效果/" title="">https://github.com/Jermyo/blog.git/2017/10/23/Bootstrap Ace模板实现菜单和Tab页效果/</a></p>
+        <footer>
+            <a href="https://github.com/Jermyo/blog.git">
+                <img src="/blog/images/logo.png" alt="Jer">
+                Jer
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://github.com/Jermyo/blog.git/2017/10/23/Bootstrap Ace模板实现菜单和Tab页效果/&title=Jer&pic=https://github.com/Jermyo/blog.gitimages/logo.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://github.com/Jermyo/blog.git/2017/10/23/Bootstrap Ace模板实现菜单和Tab页效果/&title=Jer&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://github.com/Jermyo/blog.git/2017/10/23/Bootstrap Ace模板实现菜单和Tab页效果/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=Jer&url=https://github.com/Jermyo/blog.git/2017/10/23/Bootstrap Ace模板实现菜单和Tab页效果/&via=https://github.com/Jermyo/blog.git" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://github.com/Jermyo/blog.git/2017/10/23/Bootstrap Ace模板实现菜单和Tab页效果/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://github.com/Jermyo/blog.git/2017/10/23/Bootstrap Ace模板实现菜单和Tab页效果/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Bootstrap-Ace模板实现菜单和Tab页效果"><span class="post-toc-text">Bootstrap Ace模板实现菜单和Tab页效果</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#一、效果展示"><span class="post-toc-text">一、效果展示</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+  
+    <a href="/blog/2017/10/12/CSDN-markdown/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">欢迎使用Markdown编辑器写博客</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2017 Jer<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://github.com/Jermyo/blog.git",
+      animate: true,
+      isHome: false,
+      share: true
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/blog/categories/开源项目/">开源项目</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/blog/tags/博客/" style="font-size: 10px;">博客</a> <a href="/blog/tags/开源项目/" style="font-size: 10px;">开源项目</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="https://jermyo.github.io/blog">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/blog/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/blog/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/blog/tags/博客/" style="font-size: 10px;">博客</a> <a href="/blog/tags/开源项目/" style="font-size: 10px;">开源项目</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/blog/js/search.js"></script>
+<script src="/blog/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/blog/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/blog/js/animate.js"></script>
+
+  </div>
+</body>
+</html>
