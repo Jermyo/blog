@@ -1,3 +1,5 @@
+## 我的主页 :  https://jermyo.github.io/blog/
+
 ![MiHo](http://oerolc7og.bkt.clouddn.com/images/miho/theme/github.jpg)
 hexo-theme-miho
 ================
